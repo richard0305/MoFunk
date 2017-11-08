@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FA7199</color>
+    <color name="colorPrimaryDark">#FA7199</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="transparent">#0000</color>
+    <color name="progressBarColor">#7fFB5553</color>
+
+    <color name="text_error_color">#7f000000</color>
+
+    <color name="third_party_text_color">#999999</color>
+    <color name="tab_text_color_normal">#A7A7A7</color>
+    <color name="tab_text_color_selected">#FB5553</color>
+    <color name="progress_color">#FB5553</color>
+    <color name="bg_red_color">#FB5553</color>
+    <color name="bg_red_color_pressed">#FFEEF0</color>
+
+    <color name="white">#FFF</color>
+    <color name="grayLine">#BEBEBE</color>
+    <color name="scan_corner_color">#0effc2</color>
+    <color name="red">#FE4784</color>
+    <color name="black">#000</color>
+</resources>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     android:layout_width="match_parent"
+    android:gravity="bottom"
+    android:background="#fff"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/tvShare"
+        android:layout_width="match_parent"
+        android:text="分享给朋友"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:layout_height="45dp" />
+    <TextView
+        android:id="@+id/lin1"
+        android:layout_below="@+id/tvShare"
+        android:layout_width="match_parent"
+        android:background="#4f4f4f"
+        android:layout_height="0.5dp" />
+    <TextView
+        android:layout_below="@+id/lin1"
+        android:id="@+id/tvSave"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:text="保存到本地"
+        android:layout_height="45dp" />
+    <TextView
+        android:id="@+id/lin2"
+        android:layout_below="@+id/tvSave"
+        android:layout_width="match_parent"
+        android:background="#4f4f4f"
+        android:layout_height="0.5dp" />
+    <TextView
+        android:layout_below="@+id/lin2"
+        android:id="@+id/tvCancle"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:text="取消"
+        android:layout_height="45dp" />
+
+</RelativeLayout>

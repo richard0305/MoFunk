@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_marginTop="2dp"
+    android:layout_height="wrap_content">
+<ylj.mofunk.widget.SlidingMenu
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:id="@+id/content"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="match_parent"
+                android:background="#ff00"
+                android:layout_height="70dp" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/menu"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/tvDing"
+                android:layout_width="match_parent"
+                android:background="#fff"
+                android:gravity="center"
+                android:text="置顶"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ylj.mofunk.widget.SlidingMenu>
+</LinearLayout>

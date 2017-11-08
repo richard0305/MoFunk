@@ -1,0 +1,126 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="ylj.mofunk.view.MapFragment">
+
+
+
+    <!-- TODO: Update blank fragment layout -->
+    <com.amap.api.maps.TextureMapView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/mapview" />
+    <RadioGroup
+        android:id="@+id/llType"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        >
+        <RadioButton
+            android:checked="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+          android:layout_marginBottom="5dp"
+            android:layout_marginRight="10dp"
+            android:id="@+id/NORMAL"
+            android:layout_width="0dp"
+            android:button="@null"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:background="@drawable/shape_map_button"
+            android:textColor="@color/colorPrimary"
+            android:text="普通图"
+            android:layout_height="match_parent" />
+        <RadioButton
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginRight="10dp"
+            android:id="@+id/NAVI"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:button="@null"
+            android:gravity="center"
+            android:text="导航图"
+            android:background="@drawable/shape_map_button"
+            android:textColor="@color/colorPrimary"
+            android:layout_height="match_parent" />
+        <RadioButton
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginRight="10dp"
+            android:id="@+id/NIGHT"
+            android:button="@null"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:background="@drawable/shape_map_button"
+            android:textColor="@color/colorPrimary"
+            android:layout_weight="1"
+            android:text="夜景图"
+            android:layout_height="match_parent" />
+        <RadioButton
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginRight="10dp"
+            android:id="@+id/SATELLITE"
+            android:button="@null"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:background="@drawable/shape_map_button"
+            android:textColor="@color/colorPrimary"
+            android:layout_weight="1"
+            android:text="卫星图"
+            android:layout_height="match_parent" />
+    </RadioGroup>
+
+    <LinearLayout
+        android:id="@+id/lledittext"
+        android:layout_below="@+id/llType"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <android.support.design.widget.TextInputEditText
+        android:padding="5dp"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:id="@+id/edittext"
+        android:hint="输入地点"
+        android:layout_height="45dp" />
+        <ImageView
+            android:padding="10dp"
+            android:layout_gravity="center"
+            android:id="@+id/ivMapSearch"
+            android:layout_width="wrap_content"
+            android:src="@mipmap/map_search64"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <ListView
+        android:layout_below="@+id/lledittext"
+        android:layout_width="match_parent"
+        android:id="@+id/maplist"
+        android:layout_height="100dp"></ListView>
+
+    <ImageView
+        android:id="@+id/ivMoveLocation"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="100dp"
+       android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:src="@mipmap/move_location64"
+        android:layout_height="wrap_content" />
+    <ImageView
+        android:id="@+id/ivMoveXingqu"
+        android:layout_marginLeft="15dp"
+        android:layout_marginBottom="100dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_width="wrap_content"
+        android:src="@mipmap/map_xingqu64"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="5dp"
+   >
+
+    <android.support.v7.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/bg_red_color"
+        app:cardPreventCornerOverlap="true"
+        android:padding="5dp"
+        app:cardCornerRadius="15dp">
+
+        <ImageView
+            android:id="@+id/item_iv"
+            android:src="@mipmap/huge"
+            android:adjustViewBounds="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true" />
+
+        <TextView
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:layout_gravity="bottom|center_horizontal"
+            android:id="@+id/item_tv"
+            android:layout_margin="15dp"
+            android:layout_width="wrap_content"
+            android:text="12121"
+            android:layout_height="wrap_content" />
+    </android.support.v7.widget.CardView>
+</RelativeLayout>
