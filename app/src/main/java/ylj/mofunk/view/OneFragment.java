@@ -3,8 +3,12 @@ package ylj.mofunk.view;
 
 import android.database.Cursor;
 import android.net.Uri;
-import android.widget.ListView;
-import android.widget.SimpleAdapter;
+import android.widget.TextView;
+
+import com.vise.baseble.ViseBle;
+import com.vise.baseble.callback.scan.IScanCallback;
+import com.vise.baseble.callback.scan.SingleFilterScanCallback;
+import com.vise.baseble.model.BluetoothLeDeviceStore;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,7 +26,6 @@ import ylj.mofunk.di.modules.OneIdListModule;
 import ylj.mofunk.model.Base.BaseFragment;
 import ylj.mofunk.model.Entity.LiveAppIndexInfo;
 import ylj.mofunk.model.tools.LogUtils;
-import ylj.mofunk.model.tools.ToastUtils;
 import ylj.mofunk.presenter.OneIdListContract;
 import ylj.mofunk.presenter.OneIdListPresenter;
 
@@ -37,10 +40,13 @@ public class OneFragment extends BaseFragment implements OneIdListContract.View{
     List<Integer> imageMenuItemImageResource=new ArrayList<Integer>();
     List<String> menuItemName=new ArrayList<String>();
 
-    @BindView(R.id.listview)
-    ListView listView;
+
     @Inject
     OneIdListPresenter presenter;
+    @BindView(R.id.tvContent)
+    TextView tvContent;
+
+
     @Override
     protected void initView() {
         setContentView(R.layout.fragment_one);
@@ -52,15 +58,12 @@ public class OneFragment extends BaseFragment implements OneIdListContract.View{
         imageMenuItemImageResource.add(R.mipmap.ic_launcher_round);
         imageMenuItemImageResource.add(R.mipmap.ic_launcher_round);
         imageMenuItemImageResource.add(R.mipmap.ic_launcher_round);
-        menuItemName.add("微信");
+        menuItemName.add("扫描所有设备");
         menuItemName.add("QQ");
         menuItemName.add("微博");
         menuItemName.add("电话");
 
-        ArrayList<HashMap<String, String>> readContact = readContact();
-        listView.setAdapter(new SimpleAdapter(getActivity(), readContact,
-                R.layout.item_list_phone, new String[] { "name", "phone" },
-                new int[] { R.id.tv_name, R.id.tv_phone }));
+
     }
 
     private void initPresenter() {
@@ -71,12 +74,49 @@ public class OneFragment extends BaseFragment implements OneIdListContract.View{
     protected void initData() {
         satelliteMenu.getmBuilder().setMenuImage(R.mipmap.ic_launcher_round).
                 setMenuItemImageResource(imageMenuItemImageResource).setMenuItemNameTexts(menuItemName).
-                setOnMenuItemClickListener((view,position)-> ToastUtils.showLongToast("点击了:"+position)).creat();
+                setOnMenuItemClickListener((view,position)-> switchOnclick(position)).creat();
 
     }
 
+        void switchOnclick(int position){
+            ViseBle.getInstance().startScan(new SingleFilterScanCallback(new IScanCallback() {
+                @Override
+                public void onDeviceFound(BluetoothLeDeviceStore device) {
+                        LogUtils.i("开始扫描");
+//                    if(device.getDeviceList().size()!=0){
+//                        tvContent.setText("名称："+device.getDeviceList().get(0).getName()+"\n状态："+device.getDeviceList().get(0).getBluetoothDeviceBondState()+"\n地址："+
+//                                device.getDeviceList().get(0).getAddress()+"\n类型："+device.getDeviceList().get(0).getBluetoothDeviceClassName()+"\nuuid："+device.getDeviceList().get(0).getBluetoothDeviceKnownSupportedServices());
+//                    }
+
+                    tvContent.setText(device.toString());
+
+
+
+                }
+
+                @Override
+                public void onScanFinish(BluetoothLeDeviceStore bluetoothLeDeviceStore) {
+                    LogUtils.i("扫描完成");
+                }
+
+                @Override
+                public void onScanTimeout() {
+                    LogUtils.i("超时");
+                }
+            }).setDeviceName("PE-TL20"));
+//            ViseBle.getInstance().startLeScan(new BluetoothAdapter.LeScanCallback(){
+//                @Override
+//                public void onLeScan(BluetoothDevice device, int rssi, byte[] scanRecord) {
+//
+//                    tvContent.setText("名称："+device.getName()+"\n状态："+device.getBondState()+"\n地址："+
+//                            device.getAddress()+"\n类型："+device.getType()+"\nuuid："+device.getUuids());
+//                }
+//            });
+        }
+
     @Override
     protected void initEvent() {
+
     }
 
     @Override

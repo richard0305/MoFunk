@@ -113,4 +113,6 @@ dependencies {
     compile'org.greenrobot:greendao-generator:3.2.2'
     compile 'com.github.richard0305:MyFirstToast:v1.0'
 
+    compile 'com.vise.xiaoyaoyou:baseble:2.0.0'
+
 }

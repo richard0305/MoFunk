@@ -1,8 +1,9 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="ylj.mofunk.view.OneFragment">
 
     <LinearLayout
@@ -27,10 +28,11 @@
 
     </LinearLayout>
 
-    <ListView
-        android:id="@+id/listview"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"></ListView>
+<TextView
+    android:id="@+id/tvContent"
+    android:text="sdsad asdasd asd as"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" />
 
     <!-- TODO: Update blank fragment layout -->
     <csy.menu.satellitemenulib.view.SatelliteMenu
@@ -45,4 +47,4 @@
         app:paddingEnd="50dp"
         app:radius="150dp"></csy.menu.satellitemenulib.view.SatelliteMenu>
 
-</RelativeLayout>
+</LinearLayout>

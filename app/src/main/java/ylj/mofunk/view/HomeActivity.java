@@ -93,6 +93,7 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
             if (ContextCompat.checkSelfPermission(HomeActivity.this, Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
                 permissionList.add(Manifest.permission.READ_CONTACTS);
             }
+
             if (!permissionList.isEmpty()) {
                 String [] permissions = permissionList.toArray(new String[permissionList.size()]);
                 ActivityCompat.requestPermissions(HomeActivity.this, permissions, 1);
