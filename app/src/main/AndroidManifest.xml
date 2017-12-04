@@ -18,15 +18,15 @@
     <!-- 允许程序读写手机状态和身份 -->
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <!-- 允许程序访问CellID或WiFi热点来获取粗略的位置 -->
-    <uses-permission-sdk-23 android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission-sdk-23 android:name="android.permission.ACCESS_COARSE_LOCATION" />
     //定位包、导航包需要的额外权限（注：基础权限也需要）
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
     <!-- <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" /> -->
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-    <uses-permission android:name="android.permission.READ_CONTACTS"/>
-    <uses-permission android:name="android.permission.BLUETOOTH"/>
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 
     <application
         android:name=".app.MoApplication"
@@ -56,10 +56,19 @@
             android:theme="@style/Theme.Design.Light.NoActionBar" />
         <activity
             android:name=".view.WebActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+
         <service
             android:name=".model.Service.BadgeIntentService"
-            android:exported="false"></service>
+            android:exported="false" />
+
+        <activity
+            android:name=".view.ShareActivity"
+            android:label="@string/title_activity_share"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity android:name=".view.ShareEditActivity"
+            ></activity>
     </application>
 
 </manifest>

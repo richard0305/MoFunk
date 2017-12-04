@@ -31,7 +31,7 @@ public class TestFragment extends BaseFragment {
     protected void initData() {
 //        String url = "http://live.bilibili.com/api/playurl?player=1&quality=0&cid=190";
 //        String url = "http://live.bilibili.com/api/playurl?player=1&quality=0&cid=67223";
-        String url = "http://baobab.wdjcdn.com/14564977406580.mp4";
+        String url = "http://fus.cdn.krcom.cn/003TLOK3lx07gdk3DtN601040103bAUx0k03.mp4?label=mp4_1080p&template=27&Expires=1512099803&ssig=z7Gq%2Fjkmpc&KID=unistore,video";
 //        String url="http://txy.live-play.acgvideo.com/live-txy/592024/live_301940_3118084.flv?wsSecret=bdbae182ef3b847167c2ee606b1d908d";
 //增加封面
         ImageView imageView = new ImageView(getActivity());

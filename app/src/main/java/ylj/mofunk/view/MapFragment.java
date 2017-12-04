@@ -250,7 +250,7 @@ public class MapFragment extends BaseFragment implements PoiSearch.OnPoiSearchLi
 
     @Override
     public void onGetInputtips(List<Tip> list, int i) {
-        LogUtils.e("list=" + list.toString());
+//        LogUtils.e("list=" + list.toString());
         adapter.upData(list);
     }
 }

@@ -32,6 +32,8 @@ public class WebActivity extends BaseActivity {
         webview.getSettings().setJavaScriptEnabled(true);
         ViewCompat.setTransitionName(image, "tran_01");
         //设置Web视图
+
+        image.setVisibility(View.GONE);
         webview.setWebViewClient(new HelloWebViewClient ());
         setSupportActionBar(toolbar);
 

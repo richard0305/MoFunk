@@ -91,7 +91,6 @@ public class OneFragment extends BaseFragment implements OneIdListContract.View{
                     tvContent.setText(device.toString());
 
 
-
                 }
 
                 @Override
