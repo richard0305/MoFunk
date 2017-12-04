@@ -1,13 +1,13 @@
 package ylj.mofunk.view;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.EditText;
 
 import org.angmarch.views.NiceSpinner;
 
-import java.util.Arrays;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -19,6 +19,7 @@ import ylj.mofunk.dao.DaoSession;
 import ylj.mofunk.dao.ShareDaoDao;
 import ylj.mofunk.model.Entity.ShareDao;
 import ylj.mofunk.model.tools.StringUtils;
+import ylj.mofunk.model.tools.TimeUtils;
 import ylj.mofunk.model.tools.ToastUtils;
 
 public class ShareEditActivity extends AppCompatActivity {
@@ -34,6 +35,7 @@ public class ShareEditActivity extends AppCompatActivity {
     List<String> dataset;
     private DaoSession dao;
     private ShareDaoDao zDao;
+    Handler handler=new Handler();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +43,11 @@ public class ShareEditActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         dao= MoApplication.getInstance().getDaoSession();
         zDao=  dao.getShareDaoDao();
-      dataset = new LinkedList<>(Arrays.asList("Music", "MV", "NOTE", "WEIBO"));
+        dataset = new ArrayList<>();
+        dataset.add("Music");
+        dataset.add("MV");
+        dataset.add("NOTE");
+        dataset.add("WEIBO");
         niceSpinner.attachDataSource(dataset);
     }
 
@@ -51,7 +57,7 @@ public class ShareEditActivity extends AppCompatActivity {
         String content=etcontent.getText().toString().trim();
         String desc=etdesc.getText().toString().trim();
        String type=dataset.get(niceSpinner.getSelectedIndex()) ;
-
+String time= TimeUtils.millis2String(System.currentTimeMillis());
        if(StringUtils.isEmpty(title)){
            ToastUtils.showShortToast("标题不能为空！");
        }    if(StringUtils.isEmpty(content)){
@@ -59,10 +65,17 @@ public class ShareEditActivity extends AppCompatActivity {
        }
 
         if(!StringUtils.isEmpty(title)&& !StringUtils.isEmpty(content)){
-            zDao.insert(new ShareDao(zDao.count()+1,content,title,type,desc));
+            zDao.insert(new ShareDao(zDao.count()+1,content,title,type,desc,time));
+            ToastUtils.showShortToast("添加成功！");
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    finish();
+                }
+            },1000);
+
         }
 
-        ToastUtils.showLongToastSafe("title:"+title+"  type"+type+"  content:"+content+"  desc:"+desc);
     }
 
 

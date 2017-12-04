@@ -7,10 +7,10 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="ylj.mofunk.view.ShareActivity"
     tools:showIn="@layout/activity_share">
-<android.support.v7.widget.RecyclerView
+<com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView
     android:id="@+id/recycleview"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+    android:layout_height="match_parent"></com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView>
     <TextView
         android:id="@+id/tvNoData"
         android:visibility="gone"

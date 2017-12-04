@@ -68,18 +68,7 @@ public class MyReAdapter extends RecyclerView.Adapter<ViewHolder> {
     }
 
 
-//    public Bitmap resizeBitmap(int position) {
-//        BitmapFactory.Options options = new BitmapFactory.Options();
-//        options.inJustDecodeBounds = true;
-//        BitmapFactory.decodeResource(context.getResources(), arrayList.get(position).getDrawable(), options);
-//
-//        options.inPreferredConfig = Bitmap.Config.ARGB_8888;
-//
-//        options.inSampleSize = 2;
-//        options.inJustDecodeBounds = false;
-//
-//        return BitmapFactory.decodeResource(context.getResources(), arrayList.get(position).getDrawable(), options);
-//    }
+
 
 
     @Override

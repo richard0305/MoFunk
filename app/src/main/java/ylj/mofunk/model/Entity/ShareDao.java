@@ -16,13 +16,16 @@ public class ShareDao {
     private String title;
     private String type;
     private String desc;
-    @Generated(hash = 1248487040)
-    public ShareDao(long id, String url, String title, String type, String desc) {
+    private String creattime;
+    @Generated(hash = 869155366)
+    public ShareDao(long id, String url, String title, String type, String desc,
+            String creattime) {
         this.id = id;
         this.url = url;
         this.title = title;
         this.type = type;
         this.desc = desc;
+        this.creattime = creattime;
     }
 
     @Generated(hash = 1019071151)
@@ -57,6 +60,14 @@ public class ShareDao {
     }
     public void setDesc(String desc) {
         this.desc = desc;
+    }
+
+    public String getCreattime() {
+        return this.creattime;
+    }
+
+    public void setCreattime(String creattime) {
+        this.creattime = creattime;
     }
 
 }
