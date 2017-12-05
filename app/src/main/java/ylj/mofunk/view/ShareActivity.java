@@ -94,7 +94,7 @@ public class ShareActivity extends AppCompatActivity {
 
         // 设置监听器。
         recyclerView.setSwipeMenuCreator(mSwipeMenuCreator);
-
+//
         recyclerView.setSwipeItemClickListener(new SwipeItemClickListener() {
             @Override
             public void onItemClick(View itemView, int position) {
@@ -129,15 +129,16 @@ public class ShareActivity extends AppCompatActivity {
     SwipeMenuCreator mSwipeMenuCreator = new SwipeMenuCreator() {
         @Override
         public void onCreateMenu(SwipeMenu leftMenu, SwipeMenu rightMenu, int viewType) {
-            int width = getResources().getDimensionPixelSize(R.dimen.DP_100);
+            int width = getResources().getDimensionPixelSize(R.dimen.DP_70);
+            int height = ViewGroup.LayoutParams.MATCH_PARENT;
 
             SwipeMenuItem deleteItem = new SwipeMenuItem(ShareActivity.this);
-            deleteItem.setText("编辑").setHeight(width).setWidth(width);
+            deleteItem.setText("编辑").setHeight(height).setTextColor(getResources().getColor(R.color.white)).setWidth(width).setBackgroundColor(getResources().getColor(R.color.colorPrimary));
             ; // 各种文字和图标属性设置。
             rightMenu.addMenuItem(deleteItem); // 在Item左侧添加一个菜单。
 
             SwipeMenuItem deleteItem1 = new SwipeMenuItem(ShareActivity.this); // 各种文字和图标属性设置。
-            deleteItem1.setText("删除").setHeight(width).setWidth(width);
+            deleteItem1.setText("删除").setHeight(height).setTextColor(getResources().getColor(R.color.white)).setWidth(width).setBackgroundColor(getResources().getColor(R.color.black));
 
             rightMenu.addMenuItem(deleteItem1); // 在Item右侧添加一个菜单。
 
