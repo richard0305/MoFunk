@@ -9,6 +9,7 @@
 <LinearLayout
     android:background="@drawable/shape_share_item_square"
     android:layout_margin="50dp"
+    android:layout_centerInParent="true"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -17,6 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
+            android:id="@+id/ivpopcancle"
             android:layout_marginLeft="10dp"
             android:padding="5dp"
             android:layout_width="wrap_content"
@@ -25,17 +27,27 @@
             android:layout_height="wrap_content" />
         <TextView
             android:padding="5dp"
-            android:layout_alignParentRight="true"
-            android:id="@+id/tvopotype"
+            android:layout_centerInParent="true"
+            android:id="@+id/tvpoptype"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Music"
             android:textColor="#FFEC4909"
             android:textSize="30sp" />
+        <ImageView
+            android:layout_alignParentRight="true"
+            android:id="@+id/ivpopshare"
+            android:layout_marginRight="10dp"
+            android:padding="5dp"
+            android:layout_width="wrap_content"
+            android:src="@mipmap/sahre128"
+            android:layout_centerVertical="true"
+            android:layout_height="wrap_content" />
     </RelativeLayout>
 
     <TextView
+        android:id="@+id/ivpoptitle"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
         android:layout_marginTop="10dp"
@@ -44,6 +56,7 @@
         android:layout_height="wrap_content" />
 
     <TextView
+        android:id="@+id/ivpopcontent"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
         android:maxLines="5"
@@ -53,6 +66,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <TextView
+        android:id="@+id/ivpopdesc"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
         android:layout_marginTop="20dp"
@@ -70,6 +84,8 @@
         android:layout_margin="20dp"
         android:layout_height="wrap_content">
         <Button
+            android:id="@+id/btnpopdelete"
+
             android:text="删除"
             android:textSize="16sp"
             android:textColor="#fff"
@@ -78,6 +94,7 @@
             android:layout_weight="1"
             android:layout_height="35dp" />
         <Button
+            android:id="@+id/btnpopedit"
             android:text="编辑"
             android:layout_marginLeft="20dp"
             android:textSize="16sp"

@@ -1,5 +1,7 @@
 package ylj.mofunk.view;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.graphics.drawable.BitmapDrawable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -33,7 +37,7 @@ import ylj.mofunk.model.tools.ToastUtils;
 public class ShareActivity extends BaseActivity {
     private DaoSession dao;
     private ShareDaoDao zDao;
-   private  PopupWindow pop;
+    private PopupWindow pop;
     @BindView(R.id.tvNoData)
     TextView tvNoData;
     @BindView(R.id.recycleview)
@@ -43,6 +47,12 @@ public class ShareActivity extends BaseActivity {
     @BindView(R.id.fab)
     FloatingActionButton fab;
     private ABSRecycleAdapter<ShareDao> adapter;
+
+    private TextView tvType;
+    private TextView tvtitle;
+    private TextView tvcontent;
+    private TextView tvdesc;
+    private View popview;
 
 
     @Override
@@ -104,9 +114,33 @@ public class ShareActivity extends BaseActivity {
             @Override
             public void onItemClick(View itemView, int position) {
                 SetBack(0.8f);
-                ShareDao dao=   adapter.getItem(position);
-                ToastUtils.showShortToast("dianjile " + position);
-                pop.showAsDropDown(view, 0,0,Gravity.CENTER);
+               ShareDao sharedao = adapter.getItem(position);
+                tvcontent.setText(sharedao.getUrl());
+                tvdesc.setText(sharedao.getDesc());
+                tvtitle.setText(sharedao.getTitle());
+                tvType.setText(sharedao.getType());
+                pop.showAtLocation(view, Gravity.CENTER, 0, 0);
+                //渐变，从半透明变成不透明
+                ObjectAnimator animator0 = ObjectAnimator.ofFloat(popview, "alpha" , 0.4f, 1.0f );
+                //缩放，自身的中心 从小变大
+                ObjectAnimator animator1 = ObjectAnimator.ofFloat(popview, "scaleX" , 0.1f, 1.3f );
+                ObjectAnimator animator2 = ObjectAnimator.ofFloat(popview, "scaleY" , 0.1f, 1.3f );
+                ObjectAnimator animator3 = ObjectAnimator.ofFloat(popview, "scaleX" , 1.3f, 1f );
+                ObjectAnimator animator4 = ObjectAnimator.ofFloat(popview, "scaleY" , 1.3f, 1f );
+//                //属性动画，使用AnimatorSet来执行
+                AnimatorSet set1 = new AnimatorSet();
+//                //设置动画一起执行， 还是顺序执行 还是有选择的执行,这里选择一起执行
+                set1.playTogether(animator1 , animator2);
+//                set1.playTogether(animator3 , animator4);
+//                //设置动画执行时间和 开始动画的操作
+                set1.setDuration(1000).start();
+
+
+//                @SuppressLint("ResourceType")
+//                Animator anim = AnimatorInflater.loadAnimator(
+//                        ShareActivity.this, R.anim.property_animatorer);
+//                anim.setTarget(popview);
+//                anim.start();
             }
         });
 
@@ -141,13 +175,48 @@ public class ShareActivity extends BaseActivity {
 
     private void showPop() {
         pop = new PopupWindow(ShareActivity.this);
-        View view = getLayoutInflater().inflate(R.layout.item_share_pop, null);
+         popview = getLayoutInflater().inflate(R.layout.item_share_pop, null);
         pop.setWidth(RelativeLayout.LayoutParams.MATCH_PARENT);
-        pop.setHeight(RelativeLayout.LayoutParams.WRAP_CONTENT);
+        pop.setHeight(RelativeLayout.LayoutParams.MATCH_PARENT);
         pop.setBackgroundDrawable(new BitmapDrawable());
         pop.setFocusable(true);
         pop.setOutsideTouchable(true);
-        pop.setContentView(view);
+        pop.setContentView(popview);
+
+        ImageView ivcancle = (ImageView) popview.findViewById(R.id.ivpopcancle);
+        ImageView ivpopshare = (ImageView) popview.findViewById(R.id.ivpopshare);
+         tvType = (TextView) popview.findViewById(R.id.tvpoptype);
+         tvtitle = (TextView) popview.findViewById(R.id.ivpoptitle);
+         tvcontent = (TextView) popview.findViewById(R.id.ivpopcontent);
+         tvdesc = (TextView) popview.findViewById(R.id.ivpopdesc);
+        Button btnpopdelete = (Button) popview.findViewById(R.id.btnpopdelete);
+        Button btnpopedit = (Button) popview.findViewById(R.id.btnpopedit);
+
+        ivcancle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pop.dismiss();
+            }
+        });
+        ivpopshare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ToastUtils.showShortToast("分享");
+            }
+        });
+        btnpopdelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ToastUtils.showShortToast("删除");
+            }
+        });
+        btnpopedit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ToastUtils.showShortToast("编辑");
+            }
+        });
+
     }
 
 
