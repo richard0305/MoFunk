@@ -2,6 +2,7 @@ package ylj.mofunk.view;
 
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
@@ -19,6 +20,8 @@ import android.widget.TextView;
 
 import com.yanzhenjie.recyclerview.swipe.SwipeItemClickListener;
 import com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView;
+
+import java.io.Serializable;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -53,7 +56,7 @@ public class ShareActivity extends BaseActivity {
     private TextView tvcontent;
     private TextView tvdesc;
     private View popview;
-
+    public ShareDao sharedao=null;
 
     @Override
     protected void initView() {
@@ -111,10 +114,12 @@ public class ShareActivity extends BaseActivity {
 
         //点击事件
         recyclerView.setSwipeItemClickListener(new SwipeItemClickListener() {
+
+
             @Override
             public void onItemClick(View itemView, int position) {
                 SetBack(0.8f);
-               ShareDao sharedao = adapter.getItem(position);
+                sharedao = adapter.getItem(position);
                 tvcontent.setText(sharedao.getUrl());
                 tvdesc.setText(sharedao.getDesc());
                 tvtitle.setText(sharedao.getTitle());
@@ -123,8 +128,8 @@ public class ShareActivity extends BaseActivity {
                 //渐变，从半透明变成不透明
                 ObjectAnimator animator0 = ObjectAnimator.ofFloat(popview, "alpha" , 0.4f, 1.0f );
                 //缩放，自身的中心 从小变大
-                ObjectAnimator animator1 = ObjectAnimator.ofFloat(popview, "scaleX" , 0.1f, 1.3f );
-                ObjectAnimator animator2 = ObjectAnimator.ofFloat(popview, "scaleY" , 0.1f, 1.3f );
+                ObjectAnimator animator1 = ObjectAnimator.ofFloat(popview, "scaleX" , 0.1f, 1f );
+                ObjectAnimator animator2 = ObjectAnimator.ofFloat(popview, "scaleY" , 0.1f, 1f );
                 ObjectAnimator animator3 = ObjectAnimator.ofFloat(popview, "scaleX" , 1.3f, 1f );
                 ObjectAnimator animator4 = ObjectAnimator.ofFloat(popview, "scaleY" , 1.3f, 1f );
 //                //属性动画，使用AnimatorSet来执行
@@ -133,9 +138,11 @@ public class ShareActivity extends BaseActivity {
                 set1.playTogether(animator1 , animator2);
 //                set1.playTogether(animator3 , animator4);
 //                //设置动画执行时间和 开始动画的操作
-                set1.setDuration(1000).start();
+                set1.setDuration(300).start();
 
-
+//                AnimatorSet set2 = new AnimatorSet();
+//                set2.playTogether(animator3 , animator4);
+//                set2.setDuration(1000).start();
 //                @SuppressLint("ResourceType")
 //                Animator anim = AnimatorInflater.loadAnimator(
 //                        ShareActivity.this, R.anim.property_animatorer);
@@ -173,6 +180,7 @@ public class ShareActivity extends BaseActivity {
     }
 
 
+
     private void showPop() {
         pop = new PopupWindow(ShareActivity.this);
          popview = getLayoutInflater().inflate(R.layout.item_share_pop, null);
@@ -201,19 +209,44 @@ public class ShareActivity extends BaseActivity {
         ivpopshare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ToastUtils.showShortToast("分享");
+                if(sharedao!=null){
+                    Intent textIntent = new Intent(Intent.ACTION_SEND);
+                    textIntent.setType("text/plain");
+                    textIntent.putExtra(Intent.EXTRA_TEXT, sharedao.getUrl()+"/n"+sharedao.getDesc());
+                    startActivity(Intent.createChooser(textIntent, "分享"));
+                }else{
+                    ToastUtils.showShortToast("还不能分享奥");
+                }
+
+
             }
         });
         btnpopdelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ToastUtils.showShortToast("删除");
+
+                if(sharedao!=null){
+                    zDao.delete(sharedao);
+                    if (zDao.count() > 0) {
+                        if (zDao.queryBuilder().list().size() > 0) {
+                            adapter.upData(zDao.queryBuilder().list());
+                        }
+                    }
+
+                }else{
+                    ToastUtils.showShortToast("还不能删除奥");
+                }
             }
         });
         btnpopedit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ToastUtils.showShortToast("编辑");
+                if(sharedao!=null){
+                    startActivity((new Intent(ShareActivity.this,ShareEditActivity.class)).putExtra("sharedao",(Serializable)sharedao));
+                }else{
+                    ToastUtils.showShortToast("还不能编辑奥");
+                }
+
             }
         });
 

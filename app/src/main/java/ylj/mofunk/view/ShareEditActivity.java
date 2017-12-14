@@ -35,6 +35,7 @@ public class ShareEditActivity extends AppCompatActivity {
     List<String> dataset;
     private DaoSession dao;
     private ShareDaoDao zDao;
+    public ShareDao sharedao=null;
     Handler handler=new Handler();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +50,28 @@ public class ShareEditActivity extends AppCompatActivity {
         dataset.add("NOTE");
         dataset.add("WEIBO");
         niceSpinner.attachDataSource(dataset);
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        sharedao= (ShareDao) getIntent().getSerializableExtra("sharedao");
+            if(sharedao!=null){
+                etTitle.setText(sharedao.getTitle());
+                etcontent.setText(sharedao.getUrl());
+                etdesc.setText(sharedao.getDesc());
+
+                for (int i=0;i<dataset.size() ;i++){
+                    if(dataset.get(i).equals(sharedao.getType())){
+                        niceSpinner.setSelectedIndex(i);
+                        return;
+                    }
+                }
+
+
+
+            }
     }
 
     @OnClick(R.id.btnSave)

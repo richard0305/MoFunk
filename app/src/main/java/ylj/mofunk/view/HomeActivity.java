@@ -1,7 +1,9 @@
 package ylj.mofunk.view;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.os.Build;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
@@ -26,6 +28,7 @@ import ylj.mofunk.R;
 import ylj.mofunk.model.Api.ApiConstans;
 import ylj.mofunk.model.Base.ActivityController;
 import ylj.mofunk.model.Base.BaseActivity;
+import ylj.mofunk.model.tools.ToastUtils;
 
 
 /**
@@ -50,12 +53,15 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
 //        startService(
 //                new Intent(HomeActivity.this, BadgeIntentService.class).putExtra("badgeCount", 5)
 //        );
-//        Intent intent = new Intent(Intent.ACTION_MAIN);
-//        intent.addCategory(Intent.CATEGORY_HOME);
-//        ResolveInfo resolveInfo = getPackageManager().resolveActivity(intent, PackageManager.MATCH_DEFAULT_ONLY);
-//        String currentHomePackage = resolveInfo.activityInfo.packageName;
+
+
+
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        ResolveInfo resolveInfo = getPackageManager().resolveActivity(intent, PackageManager.MATCH_DEFAULT_ONLY);
+        String currentHomePackage = resolveInfo.activityInfo.packageName;
 //
-//        ToastUtils.showLongToast("currentHomePackage="+currentHomePackage);
+        ToastUtils.showLongToast("currentHomePackage="+currentHomePackage);
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        CollapsingToolbarLayout collapsingToolbar =
 //                (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);

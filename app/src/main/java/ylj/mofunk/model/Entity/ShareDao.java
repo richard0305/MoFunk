@@ -4,12 +4,15 @@ import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.Generated;
 
+import java.io.Serializable;
+
 /**
  * Created by 我的样子平平无奇 on 2017/12/4 09:26.
  * Email: 2256669598@qq.com
  */
 @Entity
-public class ShareDao {
+public class ShareDao implements Serializable{
+    private static final long serialVersionUID = 1L;
     @Id
     private long id;
     private String url;
