@@ -212,8 +212,9 @@ public class ShareActivity extends BaseActivity {
                 if(sharedao!=null){
                     Intent textIntent = new Intent(Intent.ACTION_SEND);
                     textIntent.setType("text/plain");
-                    textIntent.putExtra(Intent.EXTRA_TEXT, sharedao.getUrl()+"/n"+sharedao.getDesc());
+                    textIntent.putExtra(Intent.EXTRA_TEXT, sharedao.getUrl()+"\n"+sharedao.getDesc());
                     startActivity(Intent.createChooser(textIntent, "分享"));
+                    pop.dismiss();
                 }else{
                     ToastUtils.showShortToast("还不能分享奥");
                 }
@@ -232,10 +233,11 @@ public class ShareActivity extends BaseActivity {
                             adapter.upData(zDao.queryBuilder().list());
                         }
                     }
-
+                    pop.dismiss();
                 }else{
                     ToastUtils.showShortToast("还不能删除奥");
                 }
+
             }
         });
         btnpopedit.setOnClickListener(new View.OnClickListener() {
@@ -243,6 +245,7 @@ public class ShareActivity extends BaseActivity {
             public void onClick(View v) {
                 if(sharedao!=null){
                     startActivity((new Intent(ShareActivity.this,ShareEditActivity.class)).putExtra("sharedao",(Serializable)sharedao));
+                    pop.dismiss();
                 }else{
                     ToastUtils.showShortToast("还不能编辑奥");
                 }
